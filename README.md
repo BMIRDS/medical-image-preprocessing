@@ -2,7 +2,7 @@
 
 By [Jason Wei](https://jasonwei20.github.io/)
 
-These are a bunch of functions that I've written over the years for preprocessing medical images. If one of the functions here can save you the 30 minutes to an hour of searching up documentation/writing code for simple processing, I consider that a win.
+These are a bunch of functions that I've written over the years for preprocessing medical images. If one of the functions here can save you the 30 minutes to an hour of searching up documentation/writing code for simple processing, I consider that a win. Contributions are more than welcome. 
 
 ## Table of contents
 1. compressing a single folder of images
