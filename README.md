@@ -49,15 +49,11 @@ python code/split_val.py --input_big_folder=x --output_big_folder=y --num_per_cl
 
 
 ### 6. Anonmyzing all files in a folder:
-Note that this does not retain the data, so you should make a back-up of this.
+Note that this does not retain the data, so you should make a back-up of this. For example, if your folder `x` has `wsi_train`, `wsi_val`, and `wsi_test`, each with subfolders by class containing images, do:
 ```
 python code/anonymize.py --input_big_folder=x
 ```
-
-
-Note that the capacity for this is 26^3 = 17576 images.
-
-The mappings will be stored in a file called `sensitive_mappings.csv` in case you need to convert back at some point.
+Note that the capacity for this is 26^3 = 17576 images. The mappings will be stored in a file called `sensitive_mappings.csv` in case you need to convert back at some point.
 
 
 
