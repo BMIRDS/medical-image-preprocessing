@@ -36,8 +36,9 @@ du -a | cut -d/ -f2 | sort | uniq -c | sort -nr
 ```
 
 ### 4. Generating a csv file from images sorted by folder:
+Generate a csv file for `wsi_train` to `labels_train.csv`
 ```
-python code/gen_labels_csv.py --input_big_folder=x
+python code/gen_labels_csv.py --input_big_folder=wsi_train --output_csv_name=labels_train.csv
 ```
 
 
