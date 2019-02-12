@@ -6,7 +6,7 @@
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_big_folder", type=str, help="input folder")
-parser.add_argument("--compression_factor", type=float, default=8)
+parser.add_argument("--compression_factor", type=float, help="how much to compress each side of the image by")
 parser.add_argument("--output_big_folder", type=str, help="output_folder")
 args = parser.parse_args()
 input_big_folder = args.input_big_folder
@@ -28,6 +28,7 @@ from random import randint
 import time
 from scipy.stats import mode
 import cv2
+import gc
 
 import skimage.measure
 from skimage.transform import rescale, rotate
@@ -49,8 +50,49 @@ def confirm_output_folder(output_folder):
 def basename(path):
 	return path.split('/')[-1]
 
+#compress a reasonable size image
+def compress_reasonable_image(image_path, output_path, compression_factor, i):
+
+	#load the image with cv2
+	#print("loading", image_path)
+	image = cv2.imread(image_path)
+	#print("cv2 loaded", image_path, "of", image.shape, "compressing by", compression_factor)
+	
+	#compress the image
+	image = rescale(image, 1/compression_factor)
+	image = np.rint(image*256)
+
+	#save it
+	imsave(output_path, image)
+	print(i, image_path, "successfully saved")
+
+
+def compress_large_image(image_path, output_path, compression_factor, i):
+
+	#print("loading", image_path)
+	#open the image
+	foo = Image.open(image_path)
+	#print("PIL loaded", image_path, "of", foo.size, "compressing by", compression_factor)
+
+	#calculate the new dimensions
+	orig_x = foo.size[0]
+	orig_y = foo.size[1]
+	new_x = int(orig_x/compression_factor)
+	new_y = int(orig_y/compression_factor)
+
+	#compress the image
+	foo = foo.resize((new_x,new_y),Image.ANTIALIAS)
+	foo.save(output_path)
+	print(i, image_path, "successfully saved")
+
+	#clear the memory
+	foo = None
+	gc.collect()
+
 #Compressing a single folder:
 def compress_folder(input_folder, output_folder, compression_factor):
+
+	assert compression_factor != 1 #please don't do this.
 
 	#load the image names from the input folder
 	image_names = [f for f in listdir(input_folder) if isfile(join(input_folder, f))]
@@ -64,23 +106,24 @@ def compress_folder(input_folder, output_folder, compression_factor):
 	start_time = time.time()
 
 	for i, image_name in enumerate(image_names):
+
 		image_path = join(input_folder, image_name)
+		output_path = join(output_folder, image_name)
 
-		try:
+		try: #first try with CV2
+			compress_reasonable_image(image_path, output_path, compression_factor, i)
 		
-			print("loading", image_path)
-			image = cv2.imread(image_path)
-			print("loaded image from", image_path, "with shape", image.shape, "compressing by", compression_factor)
-
-			if not compression_factor == 1:
-				image = rescale(image, 1/compression_factor)
-				image = np.rint(image*256)
-
-			imsave(join(output_folder, image_name), image)
-			print(i, "/", len(image_names), "saved")
-
 		except:
-			print("too large", image_path)
+
+			gc.collect()
+
+			try: #now try with pillow
+				compress_large_image(image_path, output_path, compression_factor, i)
+
+			except:
+				print("BROKEN", image_path)
+
+		#print(i, "/", len(image_names), "saved")
 
 	total_time = time.time() - start_time
 	print('total time for', input_folder, "is", total_time)
