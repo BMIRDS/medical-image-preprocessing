@@ -35,12 +35,12 @@ python code/compress_big_folder.py --input_big_folder=x --output_big_folder=y --
 du -a | cut -d/ -f2 | sort | uniq -c | sort -nr
 ```
 
-### 4. Randomly moving *n* files from one folder into another folder (e.g., spliting 10 pics from training to validation set)
+### 6. Randomly moving *n* files from one folder into another folder (e.g., spliting 10 pics from training to validation set)
 
 
 
 
-### 3. Anonmyzing all files in a folder:
+### 7. Anonmyzing all files in a folder:
 
 
 Note that the capacity for this is 26^3 = 17576 images.
