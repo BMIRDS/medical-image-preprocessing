@@ -2,7 +2,7 @@
 
 By [Jason Wei](https://jasonwei20.github.io/)
 
-These are a bunch of functions that I've written over the years for preprocessing medical images. If one of the functions here can save you the hour of searching up documentation/writing code for simple processing tasks, I consider that a win. Contributions are more than welcome. 
+These are a bunch of functions that I've written over the years for preprocessing medical images. If one of the functions here can save you the hour of searching up documentation/writing code for simple processing tasks, I consider that a win. Contributions are more than welcome. For high-res medical image classification, see my repository [DeepSlide](https://github.com/BMIRDS/deepslide).
 
 ## Table of contents
 1. compressing a single folder of images
@@ -14,9 +14,9 @@ These are a bunch of functions that I've written over the years for preprocessin
 
 ## Dependencies
 
-- PIL `pip install Pillow`
-- scipy `pip install scipy`
-- cv2 `pip install opencv-python`
+- PIL: `pip install Pillow`
+- scipy: `pip install scipy`
+- cv2: `pip install opencv-python`
 
 ### 1. Compressing a single folder of images:
 Compressing a single folder of images called `x` by `2` into an output folder called `y`:
