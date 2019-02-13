@@ -57,6 +57,10 @@ python code/anonymize.py --input_big_folder=x
 Note that the capacity for this is 26^3 = 17576 images. The mappings will be stored in a file called `sensitive_mappings.csv` in case you need to convert back at some point.
 
 
-
+### 7. svs to png:
+Compress your `svs` images and convert them to `png` at the same time. Note that since you can't load an entire SVS image into memory, you will have to tile it and then piece it together. For an input folder with svs images `x`, convert to `png` and compress by `2`
+```
+python code/svs_to_png.py --input_folder=x --output_folder=y --compression_factor=2
+```
 
 
