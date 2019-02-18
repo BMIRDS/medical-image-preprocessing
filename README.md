@@ -64,4 +64,12 @@ python code/svs_to_png.py --input_folder=x --output_folder=y_pieces --compressio
 python code/repiece_png_tiles.py --input_folder=y_pieces --output_folder=y --compression_factor=2
 ```
 
+### 8. Duplicate files to balance the class distribution of a folder:
+Your training images are in `train`, such that `train/a` has your images for acinar, `train/l` has your images for lepidic, etc. To balance the training distribution to the class with the max number of images, run:
+```
+python code/balance_train.py --input_folder=x
+```
+
+### 9. Delete files in a validation folder until all folders have at most *n* images:
+
 
