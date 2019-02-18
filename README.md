@@ -11,6 +11,9 @@ These are a bunch of functions that I've written over the years for preprocessin
 4. generating a csv file from images sorted by folder
 5. randomly moving some files in a folder to another folder
 6. anonmyzing all files in a folder
+7. **svs to png**
+8. duplicate files to balance the class distribution of a folder:
+9. delete files in a validation folder until all folders have at most *n* images:
 
 ## Dependencies
 
@@ -67,9 +70,12 @@ python code/repiece_png_tiles.py --input_folder=y_pieces --output_folder=y --com
 ### 8. Duplicate files to balance the class distribution of a folder:
 Your training images are in `train`, such that `train/a` has your images for acinar, `train/l` has your images for lepidic, etc. To balance the training distribution to the class with the max number of images, run:
 ```
-python code/balance_train.py --input_folder=x
+python code/balance_train.py --input_folder=train
 ```
 
 ### 9. Delete files in a validation folder until all folders have at most *n* images:
-
+If you have too many images in a validation folder `val`, you can delete some of them randomly until each class has at most `500` images. To balance a validation distribution, run:
+```
+python code/cut_val.py --input_folder=val --num_val=500
+```
 
