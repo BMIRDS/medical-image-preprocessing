@@ -14,7 +14,6 @@ output_folder = args.output_folder
 compression_factor = args.compression_factor
 assert input_folder is not None
 assert output_folder is not None
-
 #Get the paths to the images
 import os
 from os import listdir
@@ -28,6 +27,7 @@ from random import randint
 import time
 from scipy.stats import mode
 import cv2
+import gc
 
 import skimage.measure
 from skimage.transform import rescale, rotate
