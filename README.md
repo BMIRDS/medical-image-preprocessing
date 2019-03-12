@@ -14,6 +14,7 @@ These are a bunch of functions that I've written over the years for preprocessin
 7. **svs to png**
 8. duplicate files to balance the class distribution of a folder:
 9. delete files in a validation folder until all folders have at most *n* images:
+10. clean whitespace in a folder of images
 
 ## Dependencies
 
@@ -78,4 +79,18 @@ If you have too many images in a validation folder `val`, you can delete some of
 ```
 python code/cut_val.py --input_folder=val --num_val=500
 ```
+
+### 10. Clean whitespace in a folder of images:
+If there is extraneous whitespace outside of images, it will be deleted. This also pads the image by adding "whitespace" to the edges of size `w=224`, so that when you use sliding window you can also cover the edges of an image during visualization. 
+```
+python code/clean_whitespace.py --input_folder=test_folder --output_folder=test_folder_clean
+```
+
+
+
+
+
+
+
+
 
