@@ -81,7 +81,6 @@ if __name__ == "__main__":
 	parser.add_argument("--compression_factor", type=float, help="original compression factor")
 	args = parser.parse_args()
 
-
 	compression_factor = args.compression_factor
 	window_size = 10000
 	compressed_window_size = int(window_size / compression_factor)

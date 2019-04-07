@@ -86,6 +86,11 @@ If there is extraneous whitespace outside of images, it will be deleted. This al
 python code/clean_whitespace.py --input_folder=test_folder --output_folder=test_folder_clean
 ```
 
+### 11. Splitting slides:
+Some whole-slide images have various cross sections (often 6). To split these into individual images, use:
+```
+python code/slide_splitter.py --input_big_folder=x --output_big_folder=y
+```
 
 
 
