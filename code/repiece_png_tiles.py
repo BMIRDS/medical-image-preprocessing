@@ -91,7 +91,7 @@ if __name__ == "__main__":
 	if not os.path.exists(output_folder):
 		os.makedirs(output_folder)
 
-	input_subfolders = get_subfolder_paths(input_folder)[360:]
+	input_subfolders = get_subfolder_paths(input_folder)
 	for input_subfolder in input_subfolders:
 		output_image_path = join(output_folder, input_subfolder.split('/')[-1]+'.png')
 		print(input_subfolder, output_image_path)
