@@ -93,7 +93,7 @@ if __name__ == "__main__":
 
 	input_subfolders = get_subfolder_paths(input_folder)[360:]
 	for input_subfolder in input_subfolders:
-		output_image_path = join(output_folder, input_subfolder.split('/')[-1]+'.jpg')
+		output_image_path = join(output_folder, input_subfolder.split('/')[-1]+'.png')
 		print(input_subfolder, output_image_path)
 		output_repieced_image(input_subfolder, output_image_path)
 
